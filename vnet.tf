@@ -8,6 +8,4 @@ resource "azurerm_virtual_network" "web-vnet" {
     env  = "dev"
     tier = "frontend"
   }
-
-
 }

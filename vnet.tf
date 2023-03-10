@@ -56,3 +56,9 @@ resource "azurerm_network_security_rule" "web-http" {
   resource_group_name         = azurerm_resource_group.web-rg.name
   network_security_group_name = azurerm_network_security_group.web-nsg.name
 }
+
+# Associate NSG with Subnet
+resource "azurerm_subnet_network_security_group_association" "web-nsg-assoc" {
+  subnet_id                 = azurerm_subnet.web-subnet.id
+  network_security_group_id = azurerm_network_security_group.web-nsg.id
+}

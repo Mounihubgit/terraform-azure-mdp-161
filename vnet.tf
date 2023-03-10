@@ -74,3 +74,17 @@ resource "azurerm_public_ip" "web-pip" {
     env = "dev"
   }
 }
+
+# NIC
+resource "azurerm_network_interface" "web-nic" {
+  name                = "web-nic"
+  resource_group_name = azurerm_resource_group.web-rg.name
+  location            = azurerm_resource_group.web-rg.location
+
+  ip_configuration {
+    name                          = "internal"
+    subnet_id                     = azurerm_subnet.web-subnet.id
+    private_ip_address_allocation = "Dynamic"
+    public_ip_address_id  = azurerm_public_ip.web-pip.id
+  }
+}
